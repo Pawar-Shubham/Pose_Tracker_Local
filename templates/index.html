@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="TopGym Template">
+    <meta name="keywords" content="TopGym, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TOP GYM</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,300i,400,500,700,900" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: Roboto, sans-serif;
+            background: url('static/img/bg1.jpeg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        header {
+            width: 100%;
+            padding: 15px 0;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7); /* Black with 70% transparency */
+            border-bottom: 2px solid rgba(192, 192, 192, 0.5); /* Optional: Adds a silver bottom border */
+        }
+        header img {
+            max-width: 150px;
+            height: auto;
+        }
+        .exercise-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            max-width: 1200px;
+            margin: auto;
+            padding: 50px 20px;
+            justify-content: center;
+        }
+        @media (min-width: 900px) {
+            .exercise-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .exercise-card {
+            background: rgba(192, 192, 192, 0.5);
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .exercise-card:hover {
+            transform: scale(1.05);
+        }
+        .exercise-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .exercise-card h5 {
+            margin: 10px 0;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="/">
+            <img src="static/img/logo.png" alt="TOP GYM Logo">
+        </a>
+    </header>
+
+    <section class="exercise-container" id="exercise-container">
+        <!-- Exercises will be dynamically inserted here -->
+    </section>
+
+    <script>
+        const exercises = [
+            { id: 0, name: "Push-up", image: "pushup.jpg" },
+            { id: 1, name: "Plank", image: "plank.jpg" },
+            { id: 2, name: "Pull-up", image: "pullup.jpg" },
+            { id: 3, name: "Hammer Curl", image: "hammercurl.png" },
+            { id: 4, name: "Tricep Dip", image: "tricepdip.jpg" },
+            { id: 5, name: "Tricep Pull-down", image: "tricep_pull_down.jpg" }
+        ];
+
+        const container = document.getElementById('exercise-container');
+
+        exercises.forEach(exercise => {
+            const card = document.createElement('div');
+            card.classList.add('exercise-card');
+            card.onclick = () => window.location.href = `/start_exercise?exercise=${exercise.id}`;
+            
+            card.innerHTML = `
+                <img src="static/img/blog/${exercise.image}" alt="${exercise.name}">
+                <h5>${exercise.name}</h5>
+            `;
+
+            container.appendChild(card);
+        });
+    </script>
+</body>
+
+</html>
+
+
+<!-- const exercises = [
+            { id: 0, name: "Push-up", image: "pushup.jpg" },
+            { id: 1, name: "Plank", image: "plank.jpg" },
+            { id: 2, name: "Pull-up", image: "pullup.jpg" },
+            { id: 3, name: "Hammer Curl", image: "hammercurl.png" },
+            { id: 4, name: "Tricep Dip", image: "tricepdip.jpg" },
+            { id: 5, name: "Tricep Pull-down", image: "tricep_pull_down.jpg" }
+        ]; -->
